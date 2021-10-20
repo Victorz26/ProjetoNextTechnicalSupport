@@ -14,10 +14,10 @@ public class AssistenciaService {
     private AssistenciaDAO assistenciaDAO;
 
     //Listar horarios/assistencias
-    public List<Assistencia> findAll() {
-        return assistenciaDAO.findAll();
-    }
+    //public List<Assistencia> findAll() {
+    //return assistenciaDAO.findAll();
+    //}
 
-    public List<> findAll() {
-        return assistenciaDAO.findAll();
+    //public List<> findAll() {
+        //return assistenciaDAO.findAll();
 }
