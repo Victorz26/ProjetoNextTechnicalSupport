@@ -2,11 +2,13 @@ package Assistencias.Services;
 
 import Assistencias.DAO.AssistenciaDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class AssistenciaService {
+@Service
+public class AssistenciasService {
 
-    @Autowired
-    private AssistenciaDAO assistenciaDAO;
+    //@Autowired
+    //private AssistenciaDAO assistenciaDAO;
 
     //Listar horarios/assistencias
     //public List<Assistencia> findAll() {

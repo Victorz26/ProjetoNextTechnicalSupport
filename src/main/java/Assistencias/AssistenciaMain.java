@@ -1,15 +1,17 @@
 package Assistencias;
 
-import Assistencias.Services.ClienteService;
+
+import Assistencias.Services.ClientesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AssistenciaMain implements CommandLineRunner {
+public class AssistenciaMain  {
+
     @Autowired
-    private ClienteService clienteservice;
+    private ClientesService clienteservice;
 
 
     public static void main(String[] args) {
@@ -18,8 +20,8 @@ public class AssistenciaMain implements CommandLineRunner {
 
     }
 
-    @Override
-    public void run(String... args) throws Exception {
 
-    }
+
+
+
 }
