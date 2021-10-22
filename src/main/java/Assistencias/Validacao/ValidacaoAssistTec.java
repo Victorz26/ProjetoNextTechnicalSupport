@@ -1,4 +1,4 @@
-package Assistencias.utils;
+package Assistencias.Validacao;
 
 public class ValidacaoAssistTec {
 }
