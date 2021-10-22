@@ -24,7 +24,8 @@ public class ClientesService {
     public Clientes find (Long id){
         return clientesDAO.findById(id).get();
     }
-    /*public void delete (Long id) {
-        clientesDAO.findById(id).
-    }*/
+
+    public void delete (Long id) {
+        clientesDAO.deleteById(id);
+    }
 }
