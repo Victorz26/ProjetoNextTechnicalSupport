@@ -25,8 +25,4 @@ public class Clientes implements Serializable {
     @Column (name = "NOME", nullable = false)
     private String nome;
 
-
-
-
-
 }

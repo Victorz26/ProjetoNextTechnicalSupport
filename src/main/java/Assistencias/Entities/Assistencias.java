@@ -14,7 +14,6 @@ import java.io.Serializable;
 @Table(name = "ASSISTENCIAS")
 public class Assistencias implements Serializable {
 
-
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "ID", nullable = false)

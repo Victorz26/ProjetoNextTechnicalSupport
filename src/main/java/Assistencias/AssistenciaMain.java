@@ -13,15 +13,7 @@ public class AssistenciaMain  {
     @Autowired
     private ClientesService clienteservice;
 
-
     public static void main(String[] args) {
         SpringApplication.run(AssistenciaMain.class, args);
-
-
     }
-
-
-
-
-
 }
