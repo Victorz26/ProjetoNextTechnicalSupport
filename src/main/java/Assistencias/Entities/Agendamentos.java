@@ -22,10 +22,10 @@ public class Agendamentos implements Serializable {
     private Long id;
 
     @Column (name = "DATAS", nullable = false)
-    private Date data;
+    private String data;
 
     @Column(name = "HORARIO", nullable = false)
-    private Time horario;
+    private String horario;
 
     @ManyToOne
     @JoinColumn(name = "ID_CLIENTE", nullable = false)
