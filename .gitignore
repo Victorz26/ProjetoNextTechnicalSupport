@@ -17,10 +17,17 @@
 *.ear
 *.zip
 *.tar.gz
+<<<<<<< HEAD
 .rar
 
 # virtual machine crash logs
 hs_err_pid
+=======
+*.rar
+
+# virtual machine crash logs
+hs_err_pid*
+>>>>>>> e0341f58c4df778f3458bd18bfc033ca96976a8e
 
 # IntelliJ
 *.iml
