@@ -27,7 +27,7 @@ public class AgendamentosController {
     @Autowired
     private AgendamentosService agendamentosService;
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public ResponseEntity<List<Agendamentos>> getTodosAgendamentos() {
         List<Agendamentos> agendamentos = agendamentosService.getTodosAgendamentos();
         return ResponseEntity.ok().body(agendamentos);

@@ -17,7 +17,7 @@ public class AssistenciasController {
     @Autowired
     private AssistenciasService assistenciasService;
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public ResponseEntity<List<Assistencias>> getTodasAssistencias() {
         List<Assistencias> assistencias = assistenciasService.getTodosAssistencias();
         return ResponseEntity.ok().body(assistencias);

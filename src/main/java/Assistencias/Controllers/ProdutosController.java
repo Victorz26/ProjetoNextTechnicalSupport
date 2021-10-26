@@ -17,7 +17,7 @@ public class ProdutosController {
     @Autowired
     private ProdutosService produtosService;
 
-    @GetMapping("/all")
+    @GetMapping("/")
     public ResponseEntity<List<Produtos>> getTodosProdutos() {
         List<Produtos> produtos = produtosService.getTodosProdutos();
         return ResponseEntity.ok().body(produtos);
