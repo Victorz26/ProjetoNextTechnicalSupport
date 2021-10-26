@@ -22,5 +22,4 @@ public class Produtos implements Serializable {
     @Column (name = "DESCRICAO_PRODUTO", nullable = false)
     private String descricaoProduto;
 
-
 }

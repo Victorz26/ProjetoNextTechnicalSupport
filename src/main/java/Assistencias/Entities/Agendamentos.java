@@ -21,8 +21,15 @@ public class Agendamentos implements Serializable {
     @Column (name = "ID", nullable = false)
     private Long id;
 
+    @Column (name = "DATAS", nullable = false)
+    private String data;
+
     @Column(name = "HORARIO", nullable = false)
-    private Time horario;
+    private String horario;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_CLIENTE", nullable = false)
+    private Clientes idCliente;
 
     @ManyToOne
     @JoinColumn (name = "ID_ASSISTENCIA", nullable = false)
@@ -31,15 +38,5 @@ public class Agendamentos implements Serializable {
     @ManyToOne
     @JoinColumn (name = "ID_PRODUTO", nullable = false)
     private Produtos idProduto;
-
-    @Column (name = "DATAS", nullable = false)
-    private Date datas;
-
-
-    @ManyToOne
-    @JoinColumn(name = "ID_CLIENTE", nullable = false)
-    private Clientes idCliente;
-
-
 
 }
