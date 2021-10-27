@@ -2,6 +2,7 @@ package Assistencias.Controllers;
 
 import Assistencias.Entities.Agendamentos;
 import Assistencias.Entities.MarcacaoAgendamentos;
+import Assistencias.Entities.Slots;
 import Assistencias.Services.AgendamentosService;
 import Assistencias.Services.AssistenciasService;
 import Assistencias.Services.ClientesService;
@@ -13,6 +14,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -37,8 +43,8 @@ public class AgendamentosController {
     public ResponseEntity<Void> postAgendamentos(@RequestBody MarcacaoAgendamentos marcacaoAgendamentos) throws URISyntaxException {
         Agendamentos agendamentos = new Agendamentos();
 
-        agendamentos.setData(marcacaoAgendamentos.getData());
-        agendamentos.setHorario(marcacaoAgendamentos.getHorario());
+        agendamentos.setData(LocalDate.parse(marcacaoAgendamentos.getData()));
+        agendamentos.setHorario(LocalTime.parse(marcacaoAgendamentos.getHorario()));
 
         agendamentos.setIdCliente(clientesService.getCliente(marcacaoAgendamentos.getIdCliente()));
         agendamentos.setIdAssistencia(assistenciasService.getAssistencia(marcacaoAgendamentos.getIdAssistencia()));
@@ -59,6 +65,12 @@ public class AgendamentosController {
     public ResponseEntity.BodyBuilder deletaAgendamento(@PathVariable Long id){
         agendamentosService.deletaAgendamento(id);
         return ResponseEntity.status(HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/freeslots/{id}")
+    public ResponseEntity<List<Slots>> getFreeSlots(@PathVariable Long id){
+        List<Slots> freeSlots = agendamentosService.getFreeSlots(id);
+        return ResponseEntity.ok().body(freeSlots);
     }
 
 }

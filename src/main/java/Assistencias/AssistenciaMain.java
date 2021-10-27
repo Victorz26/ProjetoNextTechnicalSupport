@@ -6,10 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AssistenciaMain  {
+public class AssistenciaMain {
 
     @Autowired
-    private ClientesService clienteservice;
+    private ClientesService clienteService;
 
     public static void main(String[] args) {
         SpringApplication.run(AssistenciaMain.class, args);

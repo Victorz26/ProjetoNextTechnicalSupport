@@ -8,6 +8,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -22,10 +25,10 @@ public class Agendamentos implements Serializable {
     private Long id;
 
     @Column (name = "DATAS", nullable = false)
-    private String data;
+    private LocalDate data;
 
     @Column(name = "HORARIO", nullable = false)
-    private String horario;
+    private LocalTime horario;
 
     @ManyToOne
     @JoinColumn(name = "ID_CLIENTE", nullable = false)
