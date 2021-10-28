@@ -1,0 +1,52 @@
+Cenário 1: Agendamento do cliente:
+
+- Validar Cliente:
+
+  - Validar identificador do cliente(CPF);
+  - Se não aceita letras e caracteres especiais;
+  - Quantidade de números (11);
+  - Se o número é válido;
+  - Validar se aparece a mensagem de que é um CPF inválido.
+  
+- Validar horário e data:
+
+  - Data não pode ser anterior à data atual;
+  - Hora deve ser posterior ao horário atual;
+  - Validar se aparece a mensagem de que é uma data e hora inválida, se for o caso;
+  - Validar se horário e data escolhidos não estão conflitando com algum agendamento que já foi realizado.
+  
+- Validar tipo de equipamento:
+
+  - Validar se o equipamento é um equipamento cadastrado;
+  - Validar se aparece a mensagem de que é um equipamento inválido, se for o caso.
+
+- Validar a assistência técnica onde será feito o agendamento;
+
+  - Validar se permite fazer agendamento em assistência não cadastrada;
+  - Validar se aparece a mensagem de que a assistência escolhida não está cadastrada, se for o caso.
+
+- Validar que o identificador (id) foi gerado e foi exibido quando o agendamento for concluído.
+ 
+- Validar intervalo de 30 minutos:
+   - não pode aceitar mais(31 min);
+   - não pode aceitar menos (29 min).
+   
+- Validar garantia:
+
+   - Validar se está permitindo agendar atendimento para equipamento fora da garantia;
+   - Validar se aparece a mensagem de que equipamento não está na garantia, se for o caso.
+
+Cenário 2: Desmarcar Agendamento:
+
+  - Validar se o agendamento foi excluído da base de dados;
+  - Validar se aparece a mensagem de que foi excluído com sucesso;
+  - Validar se aparece a mensagem de que não existe agendamento, caso o id informado não exista.
+  
+Cenário 3: Listar assistências técnicas disponíveis:
+
+  - Validar se ao listar assistências disponíveis alguma assistência indisponível está sendo exibida;
+  - Validar se aparece a mensagem de que a assistência técnica escolhida não é uma assistência válida, se for o caso.
+  
+Cenário 4: Listar horários livres por data para uma assistência técnica:
+
+  - Validar se não está sendo exibido algum horário que já foi agendado.

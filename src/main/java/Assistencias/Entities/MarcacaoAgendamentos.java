@@ -13,4 +13,5 @@ public class MarcacaoAgendamentos {
     private Long idCliente;
     private Long idAssistencia;
     private Long idProduto;
+    private String dataDaCompra;
 }

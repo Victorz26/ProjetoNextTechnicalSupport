@@ -27,6 +27,9 @@ public class Agendamentos implements Serializable {
     @Column(name = "HORARIO", nullable = false)
     private LocalTime horario;
 
+    @Column(name = "DATA_DA_COMPRA", nullable = false)
+    private LocalDate dataDaCompra;
+
     @ManyToOne
     @JoinColumn(name = "ID_CLIENTE", nullable = false)
     private Clientes idCliente;
@@ -38,5 +41,4 @@ public class Agendamentos implements Serializable {
     @ManyToOne
     @JoinColumn (name = "ID_PRODUTO", nullable = false)
     private Produtos idProduto;
-
 }

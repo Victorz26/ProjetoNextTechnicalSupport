@@ -6,6 +6,7 @@ import Assistencias.Entities.Slots;
 import Assistencias.Utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,7 @@ public class AgendamentosService {
     public void deletaAgendamento(Long id) {
         agendamentosDAO.deleteById(id);
     }
-
+  
     public List<Slots> getAssistanceWeekFreeSlots(Long id){
         //Criação de lista com horários ocupados
         List<Agendamentos> schedules = agendamentosDAO.findAll();
