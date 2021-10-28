@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -47,12 +48,11 @@ public class AgendamentosController {
 
             agendamentos.setData(marcacaoAgendamentos.getData());
             agendamentos.setHorario(marcacaoAgendamentos.getHorario());
-            //agendamentos.setDataDaCompra(marcacaoAgendamentos.getDataDaCompra());
+            agendamentos.setDataDaCompra(LocalDate.parse(marcacaoAgendamentos.getDataDaCompra()));
 
             agendamentos.setIdCliente(clientesService.getCliente(marcacaoAgendamentos.getIdCliente()));
             agendamentos.setIdAssistencia(assistenciasService.getAssistencia(marcacaoAgendamentos.getIdAssistencia()));
             agendamentos.setIdProduto(produtosService.getProduto(marcacaoAgendamentos.getIdProduto()));
-
 
             agendamentosService.postAgendamento(agendamentos);
 

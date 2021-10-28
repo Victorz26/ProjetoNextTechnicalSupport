@@ -2,10 +2,7 @@ package Assistencias.Validacao;
 
 import Assistencias.Entities.MarcacaoAgendamentos;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.Date;
 
 public class ValidacaoGarantia {
 
@@ -18,6 +15,6 @@ public class ValidacaoGarantia {
 
         long diferenca = dataCompra.until(dataDeHoje, ChronoUnit.DAYS);
 
-        return diferenca < 365;
+        return diferenca <= 365;
     }
 }
