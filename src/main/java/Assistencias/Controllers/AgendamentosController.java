@@ -37,13 +37,13 @@ public class AgendamentosController {
 
     @PostMapping({"/", ""})
     public ResponseEntity<Void> postAgendamentos(@RequestBody MarcacaoAgendamentos marcacaoAgendamentos) throws URISyntaxException {
-        boolean estaCerto  = true;
+        boolean naGarantia  = true;
         if(!ValidacaoGarantia.validaGarantia(marcacaoAgendamentos)){
-            estaCerto = false;
+            naGarantia = false;
             return ResponseEntity.badRequest().build();
         }
 
-        if(estaCerto) {
+        if(naGarantia) {
             Agendamentos agendamentos = new Agendamentos();
 
             agendamentos.setData(marcacaoAgendamentos.getData());
