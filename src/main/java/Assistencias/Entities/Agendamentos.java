@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Data
@@ -21,10 +22,10 @@ public class Agendamentos implements Serializable {
     private Long id;
 
     @Column (name = "DATAS", nullable = false)
-    private String data;
+    private LocalDate data;
 
     @Column(name = "HORARIO", nullable = false)
-    private String horario;
+    private LocalTime horario;
 
     @Column(name = "DATA_DA_COMPRA", nullable = false)
     private LocalDate dataDaCompra;
@@ -40,7 +41,4 @@ public class Agendamentos implements Serializable {
     @ManyToOne
     @JoinColumn (name = "ID_PRODUTO", nullable = false)
     private Produtos idProduto;
-
-
-
 }

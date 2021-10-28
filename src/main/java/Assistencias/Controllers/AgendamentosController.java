@@ -2,6 +2,7 @@ package Assistencias.Controllers;
 
 import Assistencias.Entities.Agendamentos;
 import Assistencias.Entities.MarcacaoAgendamentos;
+import Assistencias.Entities.Slots;
 import Assistencias.Services.AgendamentosService;
 import Assistencias.Services.AssistenciasService;
 import Assistencias.Services.ClientesService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @RestController
@@ -73,4 +75,21 @@ public class AgendamentosController {
         return ResponseEntity.status(HttpStatus.ACCEPTED);
     }
 
+    @GetMapping("/assistanceweekfreeslots/{id}")
+    public ResponseEntity<List<Slots>> getWeekFreeSlots(@PathVariable Long id){
+        List<Slots> freeSlots = agendamentosService.getAssistanceWeekFreeSlots(id);
+        return ResponseEntity.ok().body(freeSlots);
+    }
+
+    @GetMapping("/assistancedayfreeslots/{id}/{data}")
+    public ResponseEntity<List<LocalTime>> getWeekFreeSlots(@PathVariable Long id, @PathVariable String data){
+        List<LocalTime> freeSlots = agendamentosService.getAssistanceDayFreeSlots(id, data);
+        return ResponseEntity.ok().body(freeSlots);
+    }
+
+    @GetMapping("/dayscheduling/{data}")
+    public ResponseEntity<List<Slots>> getWeekFreeSlots(@PathVariable String data){
+        List<Slots> dayScheduling = agendamentosService.getDayScheduling(data);
+        return ResponseEntity.ok().body(dayScheduling);
+    }
 }
