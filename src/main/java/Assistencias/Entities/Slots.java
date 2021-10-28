@@ -11,7 +11,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Slots {
-    //private Long idAssistencia;
+    private String nomeAssistencia;
     private LocalDate data;
     private LocalTime horario;
 }

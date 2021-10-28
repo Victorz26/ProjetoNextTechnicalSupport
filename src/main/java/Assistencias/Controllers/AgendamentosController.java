@@ -14,10 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -67,10 +64,21 @@ public class AgendamentosController {
         return ResponseEntity.status(HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/freeslots/{id}")
-    public ResponseEntity<List<Slots>> getFreeSlots(@PathVariable Long id){
-        List<Slots> freeSlots = agendamentosService.getFreeSlots(id);
+    @GetMapping("/assistanceweekfreeslots/{id}")
+    public ResponseEntity<List<Slots>> getWeekFreeSlots(@PathVariable Long id){
+        List<Slots> freeSlots = agendamentosService.getAssistanceWeekFreeSlots(id);
         return ResponseEntity.ok().body(freeSlots);
     }
 
+    @GetMapping("/assistancedayfreeslots/{id}/{data}")
+    public ResponseEntity<List<LocalTime>> getWeekFreeSlots(@PathVariable Long id, @PathVariable String data){
+        List<LocalTime> freeSlots = agendamentosService.getAssistanceDayFreeSlots(id, data);
+        return ResponseEntity.ok().body(freeSlots);
+    }
+
+    @GetMapping("/dayscheduling/{data}")
+    public ResponseEntity<List<Slots>> getWeekFreeSlots(@PathVariable String data){
+        List<Slots> dayScheduling = agendamentosService.getDayScheduling(data);
+        return ResponseEntity.ok().body(dayScheduling);
+    }
 }
