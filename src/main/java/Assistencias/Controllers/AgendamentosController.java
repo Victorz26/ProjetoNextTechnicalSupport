@@ -7,6 +7,7 @@ import Assistencias.Services.AssistenciasService;
 import Assistencias.Services.ClientesService;
 import Assistencias.Services.ProdutosService;
 import Assistencias.Utils.Constants;
+import Assistencias.Validacao.ValidacaoGarantia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,20 +34,31 @@ public class AgendamentosController {
         return ResponseEntity.ok().body(agendamentos);
     }
 
-    @PostMapping("/")
+    @PostMapping({"/", ""})
     public ResponseEntity<Void> postAgendamentos(@RequestBody MarcacaoAgendamentos marcacaoAgendamentos) throws URISyntaxException {
-        Agendamentos agendamentos = new Agendamentos();
+        boolean estaCerto  = true;
+        if(!ValidacaoGarantia.validaGarantia(marcacaoAgendamentos)){
+            estaCerto = false;
+            return ResponseEntity.badRequest().build();
+        }
 
-        agendamentos.setData(marcacaoAgendamentos.getData());
-        agendamentos.setHorario(marcacaoAgendamentos.getHorario());
+        if(estaCerto) {
+            Agendamentos agendamentos = new Agendamentos();
 
-        agendamentos.setIdCliente(clientesService.getCliente(marcacaoAgendamentos.getIdCliente()));
-        agendamentos.setIdAssistencia(assistenciasService.getAssistencia(marcacaoAgendamentos.getIdAssistencia()));
-        agendamentos.setIdProduto(produtosService.getProduto(marcacaoAgendamentos.getIdProduto()));
+            agendamentos.setData(marcacaoAgendamentos.getData());
+            agendamentos.setHorario(marcacaoAgendamentos.getHorario());
+            //agendamentos.setDataDaCompra(marcacaoAgendamentos.getDataDaCompra());
 
-        agendamentosService.postAgendamento(agendamentos);
+            agendamentos.setIdCliente(clientesService.getCliente(marcacaoAgendamentos.getIdCliente()));
+            agendamentos.setIdAssistencia(assistenciasService.getAssistencia(marcacaoAgendamentos.getIdAssistencia()));
+            agendamentos.setIdProduto(produtosService.getProduto(marcacaoAgendamentos.getIdProduto()));
 
-        return ResponseEntity.created(new URI(Constants.URL+ "agendamentos/" + agendamentos.getId())).build();
+
+            agendamentosService.postAgendamento(agendamentos);
+
+            return ResponseEntity.created(new URI(Constants.URL + "agendamentos/" + agendamentos.getId())).build();
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     @GetMapping("/{id}")
