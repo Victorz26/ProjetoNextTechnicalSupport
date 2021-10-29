@@ -4,15 +4,13 @@ import TechnicalAssistance.Entities.Customers;
 import TechnicalAssistance.Services.CustomersService;
 import TechnicalAssistance.Utils.Constants;
 import TechnicalAssistance.Validations.ValidateCPF;
-import TechnicalAssistance.Validations.ValidateDateTime;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @RestController
@@ -32,12 +30,12 @@ public class CustomersController {
     public ResponseEntity<String> postCustomer(@RequestBody Customers customers) throws URISyntaxException {
 
         if (!ValidateCPF.isCPF(customers.getCpf())) {
-
             return ResponseEntity.badRequest().body("CPF inválido!");
         }
+
         try {
             customersService.postCustomer(customers);
-        } catch (Exception e) {
+        } catch (DataIntegrityViolationException e) {
             return ResponseEntity.badRequest().body("CPF já cadastrado!");
         }
 
