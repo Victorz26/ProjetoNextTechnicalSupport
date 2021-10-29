@@ -11,8 +11,8 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "CLIENTES")
-public class Clientes implements Serializable {
+@Table(name = "CUSTOMERS")
+public class Customers implements Serializable {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -22,7 +22,7 @@ public class Clientes implements Serializable {
     @Column (name = "CPF", nullable = false, unique = true)
     private String cpf;
 
-    @Column (name = "NOME", nullable = false)
-    private String nome;
+    @Column (name = "NAME", nullable = false)
+    private String name;
 
 }

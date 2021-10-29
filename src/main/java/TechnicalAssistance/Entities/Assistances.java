@@ -11,18 +11,18 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "ASSISTENCIAS")
-public class Assistencias implements Serializable {
+@Table(name = "ASSISTANCES")
+public class Assistances implements Serializable {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column (name = "ID", nullable = false)
     private Long id;
 
-    @Column (name = "ENDERECO", nullable = false)
-    private String endereco;
+    @Column (name = "ADDRESS", nullable = false)
+    private String address;
 
-    @Column (name = "NOME", nullable = false)
-    private String nome;
+    @Column (name = "NAME", nullable = false)
+    private String name;
 
 }
