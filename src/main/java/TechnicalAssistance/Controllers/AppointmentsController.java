@@ -8,6 +8,8 @@ import TechnicalAssistance.Services.AssistancesService;
 import TechnicalAssistance.Services.CustomersService;
 import TechnicalAssistance.Services.ProductsService;
 import TechnicalAssistance.Utils.Constants;
+import TechnicalAssistance.Validations.ValidateCPF;
+import TechnicalAssistance.Validations.ValidateDateTime;
 import TechnicalAssistance.Validations.WarrantyValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,14 +40,18 @@ public class AppointmentsController {
     }
 
     @PostMapping({"/", ""})
-    public ResponseEntity<Void> postAppointment(@RequestBody ScheduleAppointments scheduleAppointments) throws URISyntaxException {
-        boolean underWarranty  = true;
-        if(!WarrantyValidation.validateWarranty(scheduleAppointments)){
-            underWarranty = false;
-            return ResponseEntity.badRequest().build();
+    public ResponseEntity<String> postAppointment(@RequestBody ScheduleAppointments scheduleAppointments) throws URISyntaxException {
+
+        if(!WarrantyValidation.validateWarranty(scheduleAppointments)) {
+
+            return ResponseEntity.badRequest().body("Não é possível realizar agendamento para produto fora da garantia.");
         }
 
-        if(underWarranty) {
+        if ((ValidateDateTime.validateDate(scheduleAppointments.getDate())) || (ValidateDateTime.validateTime(scheduleAppointments.getHour()))) {
+
+            return ResponseEntity.badRequest().body("Data ou hora inválida.");
+        }
+
             Appointments appointments = new Appointments();
 
             appointments.setDates(LocalDate.parse(scheduleAppointments.getDate()));
@@ -58,9 +64,8 @@ public class AppointmentsController {
 
             appointmentsService.postAppointment(appointments);
 
-            return ResponseEntity.created(new URI(Constants.URL + "appointments/" + appointments.getId())).build();
-        }
-        return ResponseEntity.badRequest().build();
+            return ResponseEntity.created(new URI(Constants.URL + "appointments/" + appointments.getId())).body("Agendamento realizado com sucesso!");
+
     }
 
     @GetMapping("/{id}")
